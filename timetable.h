@@ -10,7 +10,6 @@ struct TimetableEntry {
     int start_time;
     int end_time;
 };
-
 struct EntryResult {
     bool success;
     std::string reason;
