@@ -23,7 +23,14 @@ inline bool times_overlap(int start1, int end1, int start2, int end2) {
 // NOT YET IMPLEMENTED - placeholder, always returns false
 inline bool is_room_conflict(const TimetableEntry& new_entry,
                               const std::vector<TimetableEntry>& existing_entries) {
-    return false;   // TODO: implement conflict check
+    for (const auto& entry : existing_entries) {
+        if (entry.room == new_entry.room &&
+            times_overlap(new_entry.start_time, new_entry.end_time,
+                          entry.start_time, entry.end_time)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 // NOT YET IMPLEMENTED - placeholder, always returns false
