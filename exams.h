@@ -17,15 +17,25 @@ inline EntryResult schedule_exam(const TimetableEntry& exam_entry,
     return {true, "Exam scheduled"};
 }
 
-// Messy version: inline enrollment loop + repeated range checks
-inline EntryResult submit_result(const std::string& student_id, double mark,
-                                  const std::vector<std::string>& enrolled) {
-    bool found = false;
-    for (auto& s : enrolled) {
-        if (s == student_id) found = true;
+inline bool is_valid_mark(double mark) {
+    return mark >= 0 && mark <= 100;
+}
+
+inline bool is_enrolled(const std::string& student_id,
+                         const std::vector<std::string>& enrolled_students) {
+    for (const auto& s : enrolled_students) {
+        if (s == student_id) return true;
     }
-    if (!found) return {false, "Student not enrolled"};
-    if (mark < 0) return {false, "Invalid mark"};
-    if (mark > 100) return {false, "Invalid mark"};
+    return false;
+}
+
+inline EntryResult submit_result(const std::string& student_id, double mark,
+                                  const std::vector<std::string>& enrolled_students) {
+    if (!is_enrolled(student_id, enrolled_students)) {
+        return {false, "Student not enrolled"};
+    }
+    if (!is_valid_mark(mark)) {
+        return {false, "Invalid mark"};
+    }
     return {true, "Result submitted"};
 }
