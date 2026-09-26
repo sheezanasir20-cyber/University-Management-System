@@ -5,7 +5,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "../third_party/doctest.h"
 #include "student_profile.h"
-
 TEST_CASE("attendance updates profile automatically") {
     StudentProfile profile{"S001"};
     update_attendance(profile, "CS101", 92.5);
