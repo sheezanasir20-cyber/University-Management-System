@@ -42,10 +42,15 @@ inline bool is_instructor_conflict(const TimetableEntry& new_entry,
     }
     return false;
 }
-
-// NOT YET IMPLEMENTED - always "succeeds" without checking conflicts
 inline EntryResult create_timetable_entry(const TimetableEntry& new_entry,
                                            std::vector<TimetableEntry>& existing_entries) {
+    if (is_room_conflict(new_entry, existing_entries)) {
+        return {false, "Room conflict"};
+    }
+    if (is_instructor_conflict(new_entry, existing_entries)) {
+        return {false, "Instructor conflict"};
+    }
     existing_entries.push_back(new_entry);
-    return {true, "Timetable entry published"};   // TODO: check conflicts first
+    return {true, "Timetable entry published"};
 }
+
