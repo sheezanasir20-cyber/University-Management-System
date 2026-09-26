@@ -5,7 +5,7 @@
 #include <vector>
 #include "timetable.h"
 
-inline EntryResult schedule_exam(const TimetableEntry& exam_entry,
+inline EntryResult schedule_exam(const TimetableEntreturn {true, "Exam scheduled"};ry& exam_entry,
                                   const std::vector<TimetableEntry>& timetable_entries) {
     for (const auto& entry : timetable_entries) {
         if (entry.room == exam_entry.room &&
@@ -14,9 +14,9 @@ inline EntryResult schedule_exam(const TimetableEntry& exam_entry,
             return {false, "Exam clashes with a scheduled class"};
         }
     }
-    return {true, "Exam scheduled"};
-}
 
+  return {true, "Exam scheduled"};
+}
 inline bool is_valid_mark(double mark) {
     return mark >= 0 && mark <= 100;
 }
