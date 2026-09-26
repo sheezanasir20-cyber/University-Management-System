@@ -1,7 +1,6 @@
 # Sprint 1 — Timetable & Examination Management (C++)
 
 Covers: US-01, US-02 (Timetable) and US-05, US-06 (Examination).
-
 ## Structure
 ```
 third_party/doctest.h   -> single-header test framework
